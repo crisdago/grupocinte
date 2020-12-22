@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>{{ data.name }}</h1>
+<div mat-dialog-content class='modal'>
+ Información detallada:
+ <br><br>
+ <table >
+    <tr>  
+      <td>Capital</td>  
+      <td>{{ data.capital }}</td>
+    </tr>  
+    <tr>  
+      <td>Región</td>  
+      <td>{{ data.region }}</td>
+    </tr>   
+      <tr  >  
+        <td class='topItemPais'>Idioma</td>  
+        <td> 
+            <li *ngFor='let item of data.languages'>            
+            <span class="badge">{{ item.name }}</span>
+            </li>          
+        </td>
+      </tr>
+      <tr >  
+        <td class='topItemPais'>Frontera</td>  
+        <td > 
+            <li *ngFor='let item of data.borders'>            
+            <span class="badge">{{ item }}</span> 
+            </li>          
+        </td>
+      </tr>
+      <tr>  
+        <td class='topItemPais'>Bandera</td>  
+        <td> 
+          <img mat-card-sm-image src="{{data.flag}}">        
+        </td>
+      </tr>
+
+   
+  
+  </table>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Volver</button> 
+  </mat-dialog-actions>
+
+</div>

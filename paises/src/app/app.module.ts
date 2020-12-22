@@ -3,27 +3,38 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListaPaisesComponent } from './public/lista-paises/lista-paises.component';
+import { ListaPaisesComponent,DialogDataPais } from './public/lista-paises/lista-paises.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListaPaisesComponent
+    ListaPaisesComponent,
+    DialogDataPais
   ],
   imports: [
     MatTableModule,
     MatPaginatorModule,
     MatInputModule,
     MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatToolbarModule,
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule, 

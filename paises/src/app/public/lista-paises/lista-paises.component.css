@@ -1,12 +1,45 @@
+.root {
+  
+  text-align: center;
+}
+
+.paper {
+  display: inline-block;
+  max-width: 700px;
+}
+
 table {
     width: 100%;
   }
+  img {
+    width: 90px;
+    height: 60px;
+  }
   .form {
-    min-width: 150px;
-    max-width: 500px;
+    
     width: 100%;
   }
   
   .full-width {
     width: 100%;
-  }
+  } 
+.classtr{
+  border-top-color: black;
+}
+.modal{
+  min-width: 300px;
+}
+.topItemPais{
+  vertical-align: top;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.toolbar {
+  min-height: 80px;
+}
+.header-align-right{
+  display: flex;
+  padding: 21px 0;
+  justify-content: flex-end;
+}
