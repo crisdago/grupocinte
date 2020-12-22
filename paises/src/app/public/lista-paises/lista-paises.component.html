@@ -37,7 +37,11 @@
             <button mat-icon-button color="primary" aria-label="Favorito">
                 <mat-icon aria-hidden="false" aria-label="Like" (click)="setLike(element.name)">{{(getLike(element.name)) ? 'favorite' : 'favorite_border'}}</mat-icon>
               </button>
-              <button mat-raised-button color="primary"   (click)="openDialog(element.name)">Información</button>
+
+              <button mat-icon-button color="primary" aria-label="Información">
+                <mat-icon aria-hidden="false" aria-label="Información" (click)="openDialog(element.name)">info</mat-icon>
+              </button>              
+              
             </td>
       </ng-container>
       
