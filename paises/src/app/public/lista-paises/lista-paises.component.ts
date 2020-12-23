@@ -75,7 +75,8 @@ export class ListaPaisesComponent implements AfterViewInit {
       
       }
        this.dataSource.paginator = this.paginator;
-      this.getContinentes(this.dataSource.filteredData);
+       this.continentes.length==0?
+       this.getContinentes(this.dataSource.filteredData):null;
     });
 
   }
