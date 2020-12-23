@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild, Inject} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, Inject, KeyValueDiffers} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -20,7 +20,11 @@ export class ListaPaisesComponent implements AfterViewInit {
   displayedColumns: string[] = ['Pais', 'Bandera', 'Accion'];
   dataSource :any; 
   fav = false;
-   
+  filtro:string = '';
+  continentes : any = []; 
+  sContinente :string='todo';
+
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
@@ -33,23 +37,35 @@ export class ListaPaisesComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     
-    this.consultar(""); 
+    this.consultar(); 
    
    
   }
 
-  consultar(event:any){
+  setFiltro(event:any){
+    this.filtro=event.target.value;
+    this.consultar();
+  }
+
+  consultar(){
    
     this.getPaisesService.getPaises().subscribe(resp =>{
-    
-      if(event==""){      
+      
+      if(this.sContinente!="todo"){
+          resp= Object.values(resp).filter((i: { region: string }) => ( i.region.match(this.sContinente)));       
+
+      }
+
+
+
+      if(this.filtro==""){      
         if(this.fav){           
           this.dataSource =new MatTableDataSource<Paises>(this.getFavoritos(Object.values(resp)));
         }else{
           this.dataSource =new MatTableDataSource<Paises>(Object.values(resp));
         }            
       }else{
-        let temp =Object.values(resp).filter((i: { name: string; }) => ( i.name.toLowerCase().match(event.target.value)));       
+        let temp =Object.values(resp).filter((i: { name: string }) => ( i.name.toLowerCase().match(this.filtro)));       
 
             if(this.fav){           
               this.dataSource =new MatTableDataSource<Paises>(this.getFavoritos(temp));
@@ -59,9 +75,19 @@ export class ListaPaisesComponent implements AfterViewInit {
       
       }
        this.dataSource.paginator = this.paginator;
-      
+      this.getContinentes(this.dataSource.filteredData);
     });
 
+  }
+
+  
+
+  getContinentes(data:[]){  
+   
+    data.map((key:any) =>  this.continentes.indexOf(key.region)==-1?key.region!=""?this.continentes.push(key.region):null:null);
+    
+ 
+    
   }
 
   getFavoritos(data:any){
@@ -96,7 +122,7 @@ export class ListaPaisesComponent implements AfterViewInit {
 
   favoritos(){
     this.fav=!this.fav;
-    this.consultar("");
+    this.consultar();
   }
   openDialog(name:any) {
     let tempData=this.dataSource.filteredData;

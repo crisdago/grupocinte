@@ -4,7 +4,7 @@
  <span class="spacer"></span>
  
  <mat-form-field >  
-  <input matInput placeholder="Buscar Pais" value="" (change)="consultar($event)" />
+  <input matInput placeholder="Buscar Pais" value="" (change)="setFiltro($event)" />
 </mat-form-field>
 
  <button (click)="favoritos()" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" > 
@@ -13,7 +13,16 @@
 </mat-toolbar>
 <div class="root" >
 <mat-card class="paper" >
-
+  <mat-form-field appearance="fill">
+    <mat-label>Selecione un continente</mat-label>
+    <mat-select [(value)]="sContinente"  (selectionChange)="consultar()">  
+      <mat-option value="todo">Todos</mat-option>
+      <div *ngFor='let item of continentes'>
+        <mat-option value="{{item}}">{{item}}</mat-option>
+      </div>
+     
+    </mat-select>
+  </mat-form-field>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
   
